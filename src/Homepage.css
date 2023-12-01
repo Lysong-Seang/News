@@ -1,0 +1,69 @@
+/* Homepage.css */
+.homepage-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 4% 10%;
+    background: #FFF;
+    min-height: 80vh;
+  }
+  
+  .content-container {
+    flex: 1;
+    max-width: 600px;
+    padding: 0 2%;
+  }
+  
+  .image-container {
+    flex: 1;
+    max-width: 600px; /* Control the width of the image container */
+    padding: 0 2%;
+  }
+  
+  .image-container img {
+    max-width: 100%; /* Ensure the image is never wider than its container */
+    max-height: 400px; /* Control the maximum height of the image */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image is scaled correctly */
+  }
+  
+  @media (max-width: 768px) {
+    .homepage-container {
+      flex-direction: column;
+      align-items: center;
+      padding: 4% 5%;
+    }
+  
+    .content-container, .image-container {
+      max-width: 100%;
+      padding: 0 5%;
+    }
+  
+    .image-container {
+      order: -1; /* This will make the image appear above the text on small screens */
+    }
+  }
+  
+
+  .get-started-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #FF0000;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .read-more-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: transparent;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    color: #000000;
+    cursor: pointer;
+  }
+  

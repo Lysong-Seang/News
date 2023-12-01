@@ -1,0 +1,51 @@
+
+
+.newDetail-container {
+  display: flex; /* Establishes a flex container */
+  flex-wrap: wrap; /* Allows items to wrap onto the next line */
+  justify-content: space-around; /* Evenly spaces out items with space around them */
+  gap: 20px; /* Spacing between each item */
+}
+
+.news-container {
+  flex: 0 1 calc(33.333% - 20px); /* Each item will take up a third of the container width minus the gap */
+  margin: 10px; /* Additional spacing if needed */
+  transition: transform 0.3s ease; /* Smooth transformation on hover */
+  display: flex; /* Makes sure the content inside .news-container is also flexed */
+  flex-direction: column; /* Aligns .news-container contents vertically */
+}
+
+.news-container {
+  transform: rotate(-2deg); /* Adjust the degree to tilt left */
+  margin: 10px; /* Add some space around the items */
+  transition: transform 0.3s ease; /* Smooth transformation on hover */
+}
+
+.news-container:nth-child(2) {
+  transform: rotate(0deg); /* Middle item stays straight */
+}
+
+.news-container:nth-child(3) {
+  transform: rotate(5deg); /* Adjust the degree to tilt right */
+}
+
+.news-container:hover {
+  transform: rotate(0deg); /* Straighten item on hover */
+}
+
+.news-readMore{
+  
+ 
+  background-color: #555555; /* Green */
+  border-radius: 15px;
+
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  
+}
+
+
