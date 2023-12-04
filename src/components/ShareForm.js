@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import logo from '../assets/img/newsLogo.png'
+
 
 const SharedForm = ({ title, buttonText, onFormSubmit, additionalContent, email, setEmail, password, setPassword }) => {
   return (
@@ -14,7 +16,15 @@ const SharedForm = ({ title, buttonText, onFormSubmit, additionalContent, email,
                     <form onSubmit={onFormSubmit} className='signIn'>
                       <div className="d-flex align-items-center mb-3 pb-1">
                         <i className="fas fa-cubes fa-2x me-3" style={{ color: '#ff6219' }}></i>
-                        <span className="h1 fw-bold mb-0">Logo</span>
+                        <img 
+                src={logo} 
+                alt="logo" 
+                style={{
+                    maxWidth: '50px', // This will ensure that the image is not wider than 500px
+                    height: 'auto', // This maintains the aspect ratio
+                    flexShrink: 1, // Prevents the image from shrinking
+                }}
+            />
                       </div>
 
                       <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>{title}</h5>

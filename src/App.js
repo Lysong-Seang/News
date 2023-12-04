@@ -6,11 +6,10 @@ import Signout from './components/Signout';
 import Homepage from './components/Homepage';
 import Contact from './components/Contact';
 import About from './components/About';
-
-import { auth } from './firebaseConfig';
-import { onAuthStateChanged } from 'firebase/auth';
 import Login from './components/login';
 import NewsComponent from './api/newsApi';
+import { auth } from './firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -20,7 +19,6 @@ function App() {
       setIsAuthenticated(!!user);
     });
 
-    // Clean up the subscription on unmount
     return () => unsubscribe();
   }, []);
 
@@ -29,10 +27,10 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          {isAuthenticated ? <NewsComponent /> : <Homepage />}
+          {isAuthenticated ? <Redirect to="/home" /> : <Homepage />}
         </Route>
         <Route path="/home">
-          <Homepage />
+          {isAuthenticated ? <NewsComponent /> : <Redirect to="/" />}
         </Route>
         <Route path="/login">
           <Login />
@@ -49,7 +47,6 @@ function App() {
         <Route path='/about'>
           <About />
         </Route>
-        {/* Define other routes here */}
         <Redirect to="/" /> {/* Redirects to Homepage if no routes match */}
       </Switch>
     </Router>

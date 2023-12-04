@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import noImage from '../assets/img/No-Image-Placeholder.svg.png'
 import { onAuthStateChanged } from 'firebase/auth';
 import {auth} from '../firebaseConfig'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const NewsComponent = () => {
   const [articles, setArticles] = useState([]);
@@ -19,7 +20,8 @@ const NewsComponent = () => {
         fetchData(); // Call fetchData only if the user is authenticated
       } else {
         setIsAuthenticated(false);
-        setArticles([]); // Clear articles if the user is not authenticated
+        fetchData();
+       
       }
     });
 
@@ -42,7 +44,35 @@ const NewsComponent = () => {
     }
   };
   if (!isAuthenticated) {
-    return <div>Please login to view news</div>;
+    return <div>
+    <div className="newDetail-container" >
+        {
+          articles.map((article, index) => (
+            <div key={index} className="" >
+              <div className="news-container shadow-lg rounded-lg overflow-hidden" style={{ maxWidth: '300px' }}>
+                <Link to= "/login"> 
+                <img className="newsImage" src={  article.urlToImage == null ? noImage : article.urlToImage} alt={article.title} style={{ height: '200px', objectFit: 'cover' }} />
+                </Link>
+                <div className="newDetail">
+                  <h2 className="">{article.title}</h2>
+                  <p className="news-decription">
+                    {article.description}
+                  </p>
+                  <Link to="/login" className='news-readMore' >
+                    Read more
+                  </Link>
+                
+                </div>
+              </div>
+            </div>
+          ))
+        }
+
+
+
+    </div>
+    </div>
+
   }
 
 
@@ -58,26 +88,26 @@ const NewsComponent = () => {
   return (
     <div className="newDetail-container" >
         {
-  articles.map((article, index) => (
-    <div key={index} className="" >
-      <div className="news-container shadow-lg rounded-lg overflow-hidden" style={{ maxWidth: '300px' }}>
-        <a href= {article.url} target='_blank'> 
-        <img className="newsImage" src={  article.urlToImage == null ? noImage : article.urlToImage} alt={article.title} style={{ height: '200px', objectFit: 'cover' }} />
-        </a>
-        <div className="newDetail">
-          <h2 className="">{article.title}</h2>
-          <p className="news-decription">
-            {article.description}
-          </p>
-          <a href={article.url} target="_blank" className='news-readMore' >
-            Read more
-          </a>
-         
-        </div>
-      </div>
-    </div>
-  ))
-}
+          articles.map((article, index) => (
+            <div key={index} className="" >
+              <div className="news-container shadow-lg rounded-lg overflow-hidden" style={{ maxWidth: '300px' }}>
+                <a href= {article.url} target='_blank'> 
+                <img className="newsImage" src={  article.urlToImage == null ? noImage : article.urlToImage} alt={article.title} style={{ height: '200px', objectFit: 'cover' }} />
+                </a>
+                <div className="newDetail">
+                  <h2 className="">{article.title}</h2>
+                  <p className="news-decription">
+                    {article.description}
+                  </p>
+                  <a href={article.url} target="_blank" className='news-readMore' >
+                    Read more
+                  </a>
+                
+                </div>
+              </div>
+            </div>
+          ))
+        }
 
 
 
