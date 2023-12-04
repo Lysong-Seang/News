@@ -12,6 +12,8 @@ import { auth } from './firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import LastestNews from './Lastest/LastestNews';
 import TeslaNews from './TeslaNews/TeslaNews';
+import Sports from './Apple/AppleNews';
+import AppleNews from './Apple/AppleNews';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -55,6 +57,9 @@ function App() {
         </Route>
         <Route path= '/tesla'>
           { isAuthenticated ? <TeslaNews/ > : <Homepage/>}
+        </Route>
+        <Route path= '/sports'>
+          { isAuthenticated ? <AppleNews/ > : <Homepage/>}
         </Route>
         <Redirect to="/" /> {/* Redirects to Homepage if no routes match */}
       </Switch>
