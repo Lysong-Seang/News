@@ -7,8 +7,14 @@ const LoginHomepage = () => {
             <Link className="navbar-brand" to="/lastest">
             <button className="latest-btn btn-2">Lastest News</button>
             </Link>
-            <button className="latest-btn btn-2">World</button>
-            <button className="latest-btn btn-3">Sports</button>
+            
+            <Link className="navbar-brand" to="/tesla">
+            <button className="latest-btn btn-2">Tesla </button>
+            </Link>
+            <Link className="navbar-brand" to="/tesla">
+            <button className="latest-btn btn-2">Sports </button>
+            </Link>
+           
             <button className="latest-btn btn-4">Economy</button>
             <button className="latest-btn btn-5">Wellness</button>
         </div>

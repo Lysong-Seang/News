@@ -2,7 +2,7 @@ import React from 'react';
 import myImage from '../assets/img/wikley-oh-169hero-news-shutterstock.webp';
 import '../Homepage.css'; // Make sure the path to the CSS file is correct
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import NewsComponent from '../api/NewsComponent';
+import NewsComponent from '../Lastest/LastestNews';
 import LoginHomepage from './LoginHomepage';
 
 const Homepage = () => {

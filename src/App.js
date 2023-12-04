@@ -7,9 +7,11 @@ import Homepage from './components/Homepage';
 import Contact from './components/Contact';
 import About from './components/About';
 import Login from './components/login';
-import NewsComponent from './api/NewsComponent';
+import NewsComponent from './Lastest/LastestNews';
 import { auth } from './firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
+import LastestNews from './Lastest/LastestNews';
+import TeslaNews from './TeslaNews/TeslaNews';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -27,16 +29,17 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          {isAuthenticated ? <Redirect to="/home" /> : <Homepage />}
+          {isAuthenticated ?  <LastestNews/> : <Homepage />}
         </Route>
         <Route path="/home">
-          {isAuthenticated ? <NewsComponent /> : <Redirect to="/" />}
+          {isAuthenticated ? <LastestNews /> : <Redirect to="/" />}
         </Route>
         <Route path="/login">
           <Login />
         </Route>
         <Route path="/signUp">
           <Signup />
+        
         </Route>
         <Route path="/logout">
           <Signout />
@@ -46,6 +49,12 @@ function App() {
         </Route>
         <Route path='/about'>
           <About />
+        </Route>
+        <Route path='/lastest'>
+          <LastestNews />
+        </Route>
+        <Route path= '/tesla'>
+          { isAuthenticated ? <TeslaNews/ > : <Homepage/>}
         </Route>
         <Redirect to="/" /> {/* Redirects to Homepage if no routes match */}
       </Switch>

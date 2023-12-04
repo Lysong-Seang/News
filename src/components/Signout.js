@@ -13,7 +13,7 @@ const Signout = () => {
             // Delay the redirection for a short time period
             setTimeout(() => {
                 history.push("/home");
-            }, 3000); // 3 seconds delay
+            }, 2000); // 3 seconds delay
         }).catch(error => {
             console.log(error);
             setMessage("Error during sign out. Please try again.");
