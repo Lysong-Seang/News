@@ -1,0 +1,25 @@
+.login-homepage-container {
+    display: flex; /* Flexbox layout */
+    justify-content: center; /* Centers the buttons horizontally */
+    flex-direction: row; /* Aligns the buttons in a column */
+    padding: 20px; /* Add padding as needed */
+}
+
+.latest-btn {
+    margin: 20px;
+    border: none; /* Removes the border */
+    border-radius: 20px; /* Rounded corners */
+    padding: 10px 20px; /* Top/bottom padding and left/right padding */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adds a slight shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.latest-btn:hover {
+    background-color: grey; /* Grey background on hover */
+}
+
+
+
+/* Add styles for other buttons as needed */

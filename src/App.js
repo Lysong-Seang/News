@@ -7,7 +7,7 @@ import Homepage from './components/Homepage';
 import Contact from './components/Contact';
 import About from './components/About';
 import Login from './components/login';
-import NewsComponent from './api/newsApi';
+import NewsComponent from './api/NewsComponent';
 import { auth } from './firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
