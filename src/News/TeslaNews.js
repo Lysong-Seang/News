@@ -5,7 +5,7 @@ import { auth } from '../firebaseConfig';
 import { Link } from 'react-router-dom';
 import LoginHomepage from '../components/LoginHomepage';
 import useFetchData from '../ApiFetch/useFetchData';
-import NewsArticle from '../Lastest/NewsArticle';
+import NewsArticle from './NewsArticle';
 
 const TeslaNews = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Signup from './components/Signup';
-import Signout from './components/Signout';
-import Homepage from './components/Homepage';
-import Contact from './components/Contact';
-import About from './components/About';
-import Login from './components/login';
-import NewsComponent from './Lastest/LastestNews';
+import Signup from './Navbars/Signup';
+import Signout from './Navbars/Signout';
+import Homepage from './Navbars/Homepage';
+import Contact from './Navbars/Contact';
+import About from './Navbars/About';
+import Login from './Navbars/login';
+import NewsComponent from './News/LastestNews';
 import { auth } from './firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
-import LastestNews from './Lastest/LastestNews';
-import TeslaNews from './TeslaNews/TeslaNews';
-import Sports from './Apple/AppleNews';
-import AppleNews from './Apple/AppleNews';
+import LastestNews from './News/LastestNews';
+import TeslaNews from './News/TeslaNews';
+import Sports from './News/AppleNews';
+import AppleNews from './News/AppleNews';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
