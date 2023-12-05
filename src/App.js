@@ -14,6 +14,7 @@ import LastestNews from './News/LastestNews';
 import TeslaNews from './News/TeslaNews';
 import Sports from './News/AppleNews';
 import AppleNews from './News/AppleNews';
+import WallStreet from './News/WallStreet';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -58,8 +59,11 @@ function App() {
         <Route path= '/tesla'>
           { isAuthenticated ? <TeslaNews/ > : <Homepage/>}
         </Route>
-        <Route path= '/sports'>
+        <Route path= '/apple'>
           { isAuthenticated ? <AppleNews/ > : <Homepage/>}
+        </Route>
+        <Route path= '/wallstreet'>
+          { isAuthenticated ? <WallStreet/ > : <Homepage/>}
         </Route>
         <Redirect to="/" /> {/* Redirects to Homepage if no routes match */}
       </Switch>

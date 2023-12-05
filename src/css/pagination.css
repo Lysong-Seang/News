@@ -1,0 +1,19 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination .page-item {
+    margin: 0 10px; /* Adjusts space between items */
+}
+
+.pagination .page-link {
+    text-decoration: none;
+    color: #007bff; /* Example link color */
+}
+
+.pagination .page-item.active .page-link {
+    font-weight: bold;
+}

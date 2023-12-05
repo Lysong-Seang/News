@@ -1,81 +1,78 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {auth} from '../firebaseConfig'
+import {auth, db} from '../firebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useHistory } from 'react-router-dom'; // Import useHistory
-import { Link } from 'react-router-dom';
-
+import { getFirestore, collection, addDoc, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
+import ContactForm from './ContactForm';
+import { arrayUnion } from 'firebase/firestore';
 
 const Contact = () => {
 
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
-  const history = useHistory(); // Create an instance of useHistory
+  const [isSubmitted, setIsSubmitted ] = useState(false);
+  const history = useHistory(); 
 
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     signInWithEmailAndPassword(auth, email, password)
-//     .then((userCredentail) => {
-//       console.log(userCredentail);
-//       history.push('/')
-//     }).catch((error)=> {
-//       console.log(error)
-//     })
-   
-//   };
+  const handleFormSubmit = async ({ email, name, message }) => {
+    const contactsCollectionRef = collection(db, "contacts");
+    const q = query(contactsCollectionRef, where("email", "==", email));
+  
+    try {
+      const querySnapshot = await getDocs(q);
+      let docRef;
+  
+      if (!querySnapshot.empty) {
+        // If the document exists, retrieve the document reference
+        const docSnapshot = querySnapshot.docs[0];
+        docRef = doc(db, "contacts", docSnapshot.id);
+        
+        // Push the new message into the existing array of messages
+        await updateDoc(docRef, {
+          messages: arrayUnion(message) // Use arrayUnion to add a message to the "messages" array
+        });
+      } else {
+        // If the document doesn't exist, create a new one with a messages array
+        docRef = await addDoc(contactsCollectionRef, {
+          email: email,
+          name: name,
+          messages: [message] // Start with the initial message in an array
+        });
+      }
+  
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  };
+  
+  
+  
+
+
+  useEffect(() => {
+    if (isSubmitted) {
+      const timer = setTimeout(() => {
+        history.push('/home');
+      }, 2000);
+
+      return () => clearTimeout(timer); // Cleanup the timeout on component unmount
+    }
+  }, [isSubmitted, history]);
+
+  // Conditional rendering for the thank you message
+  if (isSubmitted) {
+    return (
+      <div className="alert alert-success" role="alert">
+        <h2>Thank you for your Contacting Us, We will look into that !</h2>
+      </div>
+    );
+  }
+
+
  
   return (
-    <div className='signIn-container'> 
-    <section className="vh-100" style={{ backgroundColor: '#d3d3d3' }}>
-      <div className="container py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col col-xl-10">
-            <div className="card" style={{ borderRadius: '1rem' }}>
-              <div className="row g-0">
-               
-                <div className="">
-                  <div className="card-body p-4 p-lg-5 text-black">
-                    <form  className='signIn'>
-                      <div className="d-flex align-items-center mb-3 pb-1">
-                        <i className="fas fa-cubes fa-2x me-3" style={{ color: '#ff6219' }}></i>
-                        <span className="h1 fw-bold mb-0">Logo</span>
-                      </div>
-
-                      <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>Contact Us and Feedback</h5>
-
-                      <div className="form-outline mb-4">
-                        <input type="email" id="form2Example17" className="form-control form-control-lg"  placeholder='Enter your email'
-                        value={email} onChange={(e) => setEmail(e.target.value)}/>
-                      </div>
-
-                      <div className="form-outline mb-4">
-                        <input type="name" id="form2Example27" className="form-control form-control-lg" placeholder='Your Full Name' 
-                        value={name} onChange={(e) => setName(e.target.value)}/>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Message OR Feedback</label >
-                        <textarea class="form-control" id="exampleFormControlTextarea1" value ={message} onChange={(e)=> setMessage(e.target.value)} rows="3"></textarea>
-                    </div>
-
-                      <div className="pt-1 mb-4">
-                        <button className="btn btn-dark btn-lg btn-block" type="submit">Submit</button>
-                      </div>
-                 
-
-                      {/* Other links */}
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    </div>
+    <ContactForm onSubmit={handleFormSubmit} />
   );
-}
+};
+
 
 export default Contact;

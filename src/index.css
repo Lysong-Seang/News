@@ -21,13 +21,7 @@
   transition: transform 0.3s ease; /* Smooth transformation on hover */
 }
 
-.news-container:nth-child(2) {
-  transform: rotate(0deg); /* Middle item stays straight */
-}
 
-.news-container:nth-child(3) {
-  transform: rotate(5deg); /* Adjust the degree to tilt right */
-}
 
 .news-container:hover {
   transform: rotate(0deg); /* Straighten item on hover */
