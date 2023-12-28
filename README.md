@@ -1,8 +1,11 @@
 To get started :
+
+```bash
 - clone this repository
 - run npm install
-- replace my API key with your API key from https://newsapi.org/
+- replace my API key with API key from https://newsapi.org/
 - run npm run start
+```
   
 <img width="1402" alt="Screenshot 2023-12-05 at 11 38 08 PM" src="https://github.com/Lysong-Seang/News/assets/96807276/c5a163a4-7041-4630-870a-292052dd550c">
 
